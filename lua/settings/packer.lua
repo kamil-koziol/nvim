@@ -62,6 +62,9 @@ use({
     run = function() vim.fn["mkdp#util#install"]() end,
 }),
 
+use('vim-airline/vim-airline'),
+use('vim-airline/vim-airline-themes'),
+
 }
 
 end)
