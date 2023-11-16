@@ -10,3 +10,4 @@ vim.cmd [[autocmd BufEnter * set formatoptions-=cro]]
 
 vim.opt.relativenumber = true
 vim.opt.clipboard = ""
+

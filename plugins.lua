@@ -91,6 +91,18 @@ local plugins = {
       --return require "custom.configs.null-ls"
     end,
   },
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function ()
+      require('nvim-ts-autotag').setup({
+        -- your config
+      })
+    end,
+    lazy = true,
+    event = "VeryLazy"
+  },
+
 
   -- To make a plugin not be loaded
   -- {
