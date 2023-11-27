@@ -14,7 +14,7 @@ M.treesitter = {
     "markdown_inline",
     "python",
     "rust",
-    "c_sharp"
+    "c_sharp",
   },
   indent = {
     enable = true,
@@ -67,6 +67,7 @@ M.mason = {
 M.nvimtree = {
   git = {
     enable = true,
+    ignore = false,
   },
 
   renderer = {

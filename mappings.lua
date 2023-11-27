@@ -3,12 +3,14 @@ local M = {}
 
 M.general = {
   n = {
-  --  [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<leader>p"] = {"\"+p", "Paste from clipboard"},
   },
   v = {
     [">"] = { ">gv", "indent"},
     ["J"] = { ":m '>+1<CR>gv=gv", "Move selected down" },
     ["K"] = { ":m '<-2<CR>gv=gv", "Move selected up" },
+    ["<leader>y"] = {"\"+y", "Copy to clipboard"},
+    ["<leader>p"] = {"\"+p", "Paste from clipboard"},
   },
 }
 
