@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -25,7 +25,7 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
@@ -38,6 +38,11 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = overrides.telescope,
+  },
+
   -- Install a plugin
   {
     "max397574/better-escape.nvim",
@@ -47,8 +52,8 @@ local plugins = {
     end,
   },
 
-   -- Debugger
-   {
+  -- Debugger
+  {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
     dependencies = "mfussenegger/nvim-dap",
@@ -94,15 +99,33 @@ local plugins = {
   {
     "windwp/nvim-ts-autotag",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function ()
-      require('nvim-ts-autotag').setup({
+    config = function()
+      require("nvim-ts-autotag").setup {
         -- your config
-      })
+      }
     end,
     lazy = true,
-    event = "VeryLazy"
+    event = "VeryLazy",
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("harpoon").setup()
+    end,
   },
 
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
 
   -- To make a plugin not be loaded
   -- {
@@ -117,7 +140,6 @@ local plugins = {
   --   "mg979/vim-visual-multi",
   --   lazy = false,
   -- }
-
 }
 
 return plugins
