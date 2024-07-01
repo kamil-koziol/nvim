@@ -15,6 +15,8 @@ return {
       "python",
       "rust",
       "c_sharp",
+      "vimdoc",
+      "go",
     },
   },
 }
