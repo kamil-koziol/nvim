@@ -24,3 +24,5 @@ vim.opt.updatetime = 50
 
 vim.opt.swapfile = false
 vim.opt.backup = false
+
+vim.opt.autoread = true
