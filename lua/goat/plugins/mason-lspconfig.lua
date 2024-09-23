@@ -35,7 +35,7 @@ return {
         "cssls",
         "tailwindcss",
         "lua_ls",
-        "tsserver",
+        "ts_ls",
         "rust_analyzer",
         "gopls",
       },
