@@ -29,5 +29,6 @@ map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
+map("n", "<leader>ir", "<cmd>IfErr<CR>", { desc = "IfErr snippet" })
 -- Disable mappings
 local nomap = vim.keymap.del
