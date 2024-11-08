@@ -8,7 +8,17 @@ return {
       javascriptreact = { "eslint_d" },
       typescript = { "eslint_d" },
       typescriptreact = { "eslint_d" },
+      go = { "golangcilint" },
     }
+
+    -- local golangcilint = require("lint.linters.golangcilint")
+    -- golangcilint.append_fname = true
+    -- golangcilint.args = {
+    --   "run",
+    --   "--out-format",
+    --   "json",
+    --   "--fast",
+    -- }
 
     vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
       callback = function()
