@@ -16,9 +16,6 @@ return {
         markdown = { "prettierd" },
         yaml = { "prettierd" },
       },
-      format_on_save = {
-        lsp_fallback = false,
-      },
     })
 
     -- keymaps
