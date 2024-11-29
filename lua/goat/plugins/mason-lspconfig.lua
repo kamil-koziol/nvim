@@ -38,6 +38,8 @@ return {
         "ts_ls",
         "rust_analyzer",
         "gopls",
+        -- ruby
+        "ruby_lsp",
       },
       handlers = handlers,
     })
