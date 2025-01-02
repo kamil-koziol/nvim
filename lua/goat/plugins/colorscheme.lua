@@ -3,15 +3,13 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    require('poimandres').setup {
-      -- leave this setup function empty for default config
-      -- or refer to the configuration section
-      -- for configuration options
-    }
+    require('poimandres').setup {}
   end,
 
   -- optionally set the colorscheme within lazy config
   init = function()
     vim.cmd("colorscheme poimandres")
+    vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#222233" })
+    vim.api.nvim_set_hl(0, 'MatchParen', { bg = '#222222', fg = '#ffffff', bold = true })
   end
 }
