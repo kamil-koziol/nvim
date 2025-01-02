@@ -1,11 +1,17 @@
-return {
-  "aktersnurra/no-clown-fiesta.nvim",
+return { 
+  'olivercederborg/poimandres.nvim',
+  lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd("colorscheme no-clown-fiesta")
-    vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#999999", bold = false })
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
-    vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#999999", bold = false })
-    vim.cmd("hi StatusLine guifg=#999999")
+    require('poimandres').setup {
+      -- leave this setup function empty for default config
+      -- or refer to the configuration section
+      -- for configuration options
+    }
   end,
+
+  -- optionally set the colorscheme within lazy config
+  init = function()
+    vim.cmd("colorscheme poimandres")
+  end
 }
