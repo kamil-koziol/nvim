@@ -16,6 +16,16 @@ return {
         markdown = { "prettierd" },
         yaml = { "prettierd" },
       },
+
+      format_on_save = function(bufnr)
+        -- Enable autoformat on certain filetypes
+        local format_filetypes = { "go", "lua" }
+        if not vim.tbl_contains(format_filetypes, vim.bo[bufnr].filetype) then
+          return
+        end
+
+        return { timeout_ms = 500, lsp_format = "fallback" }
+      end,
     })
 
     -- keymaps
