@@ -30,5 +30,16 @@ map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
 map("n", "<leader>ir", "<cmd>IfErr<CR>", { desc = "IfErr snippet" })
+
+-- Open lazygit in new tmux window
+vim.keymap.set(
+  "n",
+  "<leader>lg",
+  '<cmd>silent !tmux set -w popup-border-lines rounded; tmux popup -E -eTERM=screen-256color -xC -yC -w90\\% -h90\\% -d "'
+    .. vim.fn.getcwd()
+    .. '" lazygit --debug<cr>',
+  { desc = "Lazygit" }
+)
+
 -- Disable mappings
 local nomap = vim.keymap.del
