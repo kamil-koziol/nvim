@@ -24,10 +24,6 @@ map("v", "K", ":m '>-2<CR>gv=gv", { desc = "Move selected up" })
 map("i", "<C-k>", vim.lsp.buf.signature_help)
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
-map("i", "<C-h>", "<Left>", { desc = "move left" })
-map("i", "<C-l>", "<Right>", { desc = "move right" })
-map("i", "<C-j>", "<Down>", { desc = "move down" })
-map("i", "<C-k>", "<Up>", { desc = "move up" })
 
 map("n", "<leader>ir", "<cmd>IfErr<CR>", { desc = "IfErr snippet" })
 
