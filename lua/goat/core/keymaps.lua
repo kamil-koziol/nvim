@@ -21,7 +21,6 @@ map("v", "<", "<gv")
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected down" })
 map("v", "K", ":m '>-2<CR>gv=gv", { desc = "Move selected up" })
 
-map("i", "<C-k>", vim.lsp.buf.signature_help)
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 
@@ -39,3 +38,5 @@ vim.keymap.set(
 
 -- Disable mappings
 local nomap = vim.keymap.del
+map("i", "<C-j>", "<nop>")
+map("i", "<C-k>", "<nop>")

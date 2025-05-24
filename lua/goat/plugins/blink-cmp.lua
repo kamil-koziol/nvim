@@ -6,7 +6,25 @@ return {
   ---@type blink.cmp.Config
   opts = {
     -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = "default" },
+    keymap = {
+      preset = "none",
+
+      ["<CR>"] = { "accept", "fallback" },
+      ["<C-n>"] = {
+        "select_next",
+        "snippet_forward",
+        "fallback",
+      },
+      ["<C-p>"] = {
+        "select_prev",
+        "snippet_backward",
+        "fallback",
+      },
+      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-e>"] = { "hide" },
+      ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+    },
 
     appearance = {
       nerd_font_variant = "mono",
