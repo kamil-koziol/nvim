@@ -36,6 +36,9 @@ return {
           quit_on_open = true,
         },
       },
+      filters = {
+        dotfiles = false,
+      },
     })
 
     -- mappings
