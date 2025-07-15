@@ -1,6 +1,5 @@
 return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets" },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -9,7 +8,7 @@ return {
     keymap = {
       preset = "none",
 
-      ["<CR>"] = { "accept", "fallback" },
+      ["<CR>"] = { "select_and_accept", "fallback" },
       ["<C-n>"] = {
         "select_next",
         "snippet_forward",
@@ -36,7 +35,7 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "lsp", "path", "buffer" },
     },
 
     fuzzy = { implementation = "lua" },
