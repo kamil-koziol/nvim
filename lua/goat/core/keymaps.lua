@@ -24,16 +24,6 @@ map("v", "K", ":m '>-2<CR>gv=gv", { desc = "Move selected up" })
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 
--- Open lazygit in new tmux window
-vim.keymap.set(
-  "n",
-  "<leader>lg",
-  '<cmd>silent !tmux set -w popup-border-lines rounded; tmux popup -E -eTERM=screen-256color -xC -yC -w90\\% -h90\\% -d "'
-    .. vim.fn.getcwd()
-    .. '" lazygit --debug<cr>',
-  { desc = "Lazygit" }
-)
-
 -- Disable mappings
 local nomap = vim.keymap.del
 map("i", "<C-j>", "<nop>")
