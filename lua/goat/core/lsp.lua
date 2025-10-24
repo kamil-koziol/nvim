@@ -50,15 +50,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.lsp.enable("lua_ls")
-
-vim.lsp.config["gopls"] = {
-  cmd = { "gopls" },
-  filetypes = { "go" },
-}
 vim.lsp.enable("gopls")
-
-vim.lsp.config["pylsp"] = {
-  cmd = { "pylsp" },
-  filetypes = { "python" },
-}
 vim.lsp.enable("pylsp")
