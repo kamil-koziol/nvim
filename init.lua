@@ -241,6 +241,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 vim.cmd("set completeopt+=noselect")
 
+vim.opt.completeopt = "menu,menuone,noselect,popup,fuzzy"
+
 vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
