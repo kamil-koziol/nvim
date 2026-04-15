@@ -34,10 +34,10 @@ vim.pack.add({
   "https://github.com/numToStr/Comment.nvim",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/nvim-treesitter/nvim-treesitter",
-  "https://github.com/nvim-mini/mini.pick",
-  "https://github.com/nvim-mini/mini.icons",
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/lewis6991/gitsigns.nvim",
+  "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/nvim-tree/nvim-tree.lua",
 })
 
 vim.cmd.colorscheme("no-clown-fiesta")
@@ -45,17 +45,6 @@ vim.cmd.colorscheme("no-clown-fiesta")
 require("nvim-treesitter.config").setup({
   highlight = { enable = true },
 })
-
-require("mini.icons").setup()
-
-require("mini.pick").setup({
-  options = {
-    use_cache = true,
-  },
-})
-vim.api.nvim_set_hl(0, "MiniPickHeader", { fg = "#ffffff", bg = "#333333", bold = true })
-vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { bg = "#444444", bold = true })
-vim.api.nvim_set_hl(0, "MiniPickMatchMarked", { fg = "#eeeeee", bg = "#555555" })
 
 require("conform").setup({
   formatters_by_ft = {
@@ -124,6 +113,46 @@ vim.g.mapleader = " "
 
 local map = vim.keymap.set
 
+map("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find all files in cwd" })
+map("n", "<leader>fg", "<cmd>FzfLua git_files<cr>", { desc = "Fuzzy find git-files in cwd" })
+map("n", "<leader>fs", "<cmd>FzfLua live_grep_native<cr>", { desc = "Find Files" })
+map("n", "<leader>gh", "<cmd>FzfLua git_bcommits<cr>", { desc = "Git commits history" })
+
+require("nvim-tree").setup({
+  update_focused_file = {
+    enable = true,
+  },
+  git = {
+    enable = true,
+    ignore = false,
+  },
+
+  renderer = {
+    highlight_git = true,
+    icons = {
+      show = {
+        git = true,
+      },
+    },
+  },
+  view = {
+    relativenumber = true,
+    adaptive_size = true,
+    side = "right",
+  },
+
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
+  filters = {
+    dotfiles = false,
+  },
+})
+
+map("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle tree" })
+
 map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
@@ -132,9 +161,6 @@ map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 map("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
-
-map("n", "<leader>ff", "<cmd>Pick files<CR>")
-map("n", "<leader>fs", "<cmd>Pick grep_live<CR>")
 
 map("n", "<leader>fm", function()
   require("conform").format({
@@ -147,23 +173,6 @@ end, { desc = "Format file" })
 map("n", "<leader>lg", function()
   open_floating_tool("lazygit")
 end, { desc = "LazyGit" })
-
-map("n", "<C-n>", function()
-  local temp_file = os.tmpname()
-  open_floating_tool("lf -selection-path=" .. temp_file, function()
-    local f = io.open(temp_file, "r")
-    if f then
-      local chosen_file = f:read("*l")
-      f:close()
-      os.remove(temp_file)
-      if chosen_file and chosen_file ~= "" then
-        vim.schedule(function()
-          vim.cmd("edit " .. chosen_file)
-        end)
-      end
-    end
-  end)
-end, { desc = "LF File Picker" })
 
 map("n", "<leader>gb", "<cmd>:Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle git blame" })
 
