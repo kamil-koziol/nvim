@@ -40,6 +40,50 @@ vim.pack.add({
   "https://github.com/nvim-tree/nvim-tree.lua",
 })
 
+vim.pack.add({ "https://github.com/saghen/blink.lib", "https://github.com/saghen/blink.cmp" })
+local cmp = require("blink.cmp")
+-- cmp.build():wait(60000) // just needs to be ran once
+cmp.setup({
+  -- See :h blink-cmp-config-keymap for defining your own keymap
+  keymap = {
+    preset = "none",
+
+    ["<CR>"] = { "select_and_accept", "fallback" },
+    ["<C-n>"] = {
+      "select_next",
+      "snippet_forward",
+      "fallback",
+    },
+    ["<C-p>"] = {
+      "select_prev",
+      "snippet_backward",
+      "fallback",
+    },
+    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+    ["<C-e>"] = { "hide" },
+    ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+    ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+  },
+
+  appearance = {
+    nerd_font_variant = "mono",
+  },
+
+  -- Disable cmdline
+  cmdline = { enabled = false },
+
+  -- (Default) Only show the documentation popup when manually triggered
+  completion = { documentation = { auto_show = false } },
+
+  -- Default list of enabled providers defined so that you can extend it
+  -- elsewhere in your config, without redefining it, due to `opts_extend`
+  sources = { default = { "lsp", "path", "snippets", "buffer" } },
+  fuzzy = { implementation = "rust" },
+})
+
+-- Disable default Neovim 0.11+ completion
+vim.o.autocomplete = false
+
 vim.cmd.colorscheme("no-clown-fiesta")
 
 require("nvim-treesitter.config").setup({
@@ -230,18 +274,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
   end,
 })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client:supports_method("textDocument/completion") then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    end
-  end,
-})
-vim.cmd("set completeopt+=noselect")
-
-vim.opt.completeopt = "menu,menuone,noselect,popup,fuzzy"
 
 vim.lsp.config("lua_ls", {
   settings = {
